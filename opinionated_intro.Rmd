@@ -6,61 +6,69 @@ output:
     toc_depth: 3
 ---
 
-In their most excellent book, [R for Data Science](http://r4ds.had.co.nz/index.html), Garret Grolemund and Hadley Wickham introduce the following graphic to illustrate the data science process.
+# Introduction
+
+In their most excellent book, [R for Data Science](http://r4ds.had.co.nz/index.html), Garret Grolemund and Hadley Wickham introduce the following graphic to illustrate the lifecycle of a data science project.
 
 ![](images/data-science-explore.png)
 
-_R for Data Science_ focuses almost entirely on the *Explore* aspect of Data Science, also known as "The Fun Part". This package is about the 80% of a Data Scientist's work -- the tidying up of messy data.
+_R for Data Science_ focuses almost entirely on the *Explore* aspect of Data Science, also known as "The Fun Part". The `janitor` package is about the other 80% of a Data Scientist's work -- the tidying up of messy data.
 
 ![](images/data-science-tidy.png)
 
-Data tidying is an iterative process of *Cleaning* and *Checking*. This package offers the authors' perspective on how that *Cleaning* and *Checking* should be approached. It is by no means the "right" perspective, and there are many other worthy resources (TODO: insert link to a separate section on recommended resources).
+Data tidying is an iterative process of finding and fixing problems with the dataset, which we refer to as *Checking* and  *Cleaning*. This framework is the result of the author's many lessons learned and much hair pulled out working with a datasets of questionable provinance in education and international development, but it should be familiar to many: we spend most of our time renaming poorly-named variables, viewing and tabulating data to see what's actually in there, recoding poorly constructed indexes, tracking down observations lost due to missingness, figuring out why a join introduced duplicate observations, fixing inconsistent type encoding, and so on and so forth.
 
-#Preventing messy data
+Our goal is to make the *Checking* and *Cleaning* process faster and better by wrapping our most commonly used tools and sharing our framework for minimizing problems. It is by no means the "right" approach, and there are many other worthy resources and tools. (TODO: insert link to a separate section on recommended resources).
 
-The best way to fix messy data is to avoid having messy data in the first place.
-
-TODO: 
-
-- Very short discussion of things to think about when working with a data set generated just for your project and links to other resources.
-- Potentially a discussion of when to set up a relational database.
-- Maybe mention packrat, logging and github in like one sentance with links. Maybe also setting up an organized project.
-
-#Cleaning
-
-Blind cleaning tasks
-
-- Names
-- Dates
-- Other stuff you know always needs to be changed
+In the remainder of the document, we outline how one might use `janitor` and other complimentory packages to *Check* and *Clean* a new dataset. The goal of the process is to generate a tidy dataset that works well with the tranformation tools of `tidyr`. 
 
 #Checking
 
-Automated, "blind" checking
+When starting a new data analysis project, you have certain assumptions about the data. For example, what does a row mean? What countries are supposed to be in the data? (NOTE: replace with actual example using an example dataset). Checking is the process of testing these assumptions.
+
+In our work, we distinguish between blind checks, which utilize an assertion framework to check that the dataset has certain properties at runtime, and interactive checks, which utilize your eyes and your brain to spot crazy stuff.
+
+##Blind checks
+
+Describe using an simple example, then introduce `ensure` and provide a basic set of tests you may want to do on most datasets. 
 
 - Unit tests vs runtime checks and using a package like assertr or ensure
 - ID vars / keys
 - Completeness of key outcomes
 
-Interactive checking tasks
+##Interactive checks
 
 - Using tabyls and charts to actually look at your data
 
-#Cleaning again
+#Cleaning
 
-You found something wrong. What to do?
+##Common cleaning utilities
 
-- Consider writing tests to make sure it is fixed before correcting
-- Tools for cleaning efficiently?
+- Names
+- Dates
+- Other stuff you know always needs to be changed
 
-#Utilities
+##Writing your own cleaning utilities
 
 Make this whole process faster by writing little utility functions. Here's a few that we love (utilities that fit in the "other category")
 
-#Packages
+#Preventing messy data
+
+The best way to fix messy data is to avoid having messy data in the first place.
+
+##Setting up an organized environment
+
+Very short discussion of things to think about when working with a data set generated just for your project and links to other resources.
+
+Maybe mention packrat, logging and github in like one sentance with links. Maybe also setting up an organized project.
+
+##Writing Data Management Packages
 
 A beefed up version of utilities is creating a package to handle all of the load, clean and check tasks, so that you can focus on The Fun Part the next time you pick up the project.
 
-#Questions
+- Potentially a discussion of when to set up a relational database.
 
-- Is this a webpage or a doc?
+#Additional Resources
+
+- List of other guides to data tidying
+
